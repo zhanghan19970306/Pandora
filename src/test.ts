@@ -1,7 +1,3 @@
-import { SignV1 } from "./sign/v1"
+import { bytesToSize } from './transform'
 
-const sign = new SignV1("123", "abc")
-
-sign.getParams({ a: 1, b: 2 })
-
-console.log(sign._md5BeforeStr)
+console.log(bytesToSize(1024))
