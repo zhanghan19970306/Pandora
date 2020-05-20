@@ -17,7 +17,45 @@ interface menu {
     createdAt: number
     updatedAt: number
     hasChildren: boolean
+    identify: any
+    sortId: string
     children: menu[]
+}
+
+/**
+ * 平铺菜单转tree菜单
+ *  @description  后台给到是平铺的菜单
+ * @param { menu[] } data
+ * @param { string } pid
+ */
+export function generateTreeMenus(data: menu[], pid: string): any[] {
+    const tree: any[] = []
+    data.forEach((item) => {
+        if (item.parentId === pid && item.type === "menu") {
+            const menuItem = {
+                id: item.id,
+                name: item.name,
+                identify: item.identify,
+                alias: item.alias,
+                type: item.type,
+                showit: item.showit,
+                hasChildren: item.hasChildren,
+                icon: item.icon,
+                sortId: item.sortId,
+                parentId: item.parentId,
+                url: item.href,
+                path: item.href ? item.href : `/${item.alias}`,
+                treePath: item.path,
+                createdAt: item.createdAt,
+                updatedAt: item.updatedAt,
+                meta: { title: item.name, icon: item.icon },
+                children: generateTreeMenus(data, item.id)
+            }
+            tree.push(menuItem)
+        }
+    })
+
+    return tree
 }
 
 /**
@@ -40,7 +78,11 @@ export function generatePathMenu(menus: menu[]): Map<path, menu> {
  */
 export function generateUrlMenu(menus: menu[]): Map<url, menu> {
     let urlMenus = new Map()
-    menus.forEach((item) => item.href ?? urlMenus.set(item.href, item))
+    menus.forEach((item) => {
+        if (item.href) {
+            urlMenus.set(item.href, item)
+        }
+    })
     return urlMenus
 }
 
@@ -64,7 +106,7 @@ export function generatePathChilrenMenus(
                 if (menus.has(pPath)) {
                     menus.get(pPath)?.push(item)
                 } else {
-                    menus.set(item.path, [item])
+                    menus.set(pPath, [item])
                 }
             }
         }

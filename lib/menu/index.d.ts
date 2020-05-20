@@ -16,8 +16,17 @@ interface menu {
     createdAt: number;
     updatedAt: number;
     hasChildren: boolean;
+    identify: any;
+    sortId: string;
     children: menu[];
 }
+/**
+ * 平铺菜单转tree菜单
+ *  @description  后台给到是平铺的菜单
+ * @param { menu[] } data
+ * @param { string } pid
+ */
+export declare function generateTreeMenus(data: menu[], pid: string): any[];
 /**
  * 生成path路径映射菜单map
  * @description  key为path 值为整个菜单对象

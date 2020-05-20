@@ -15,14 +15,8 @@ export declare function isNotEmpty(value: any): boolean;
  * @returns {boolean}
  */
 export declare function isNotMobile(value: string): boolean;
-/**
- * 是否 含有中文
- * @param value
- */
-export declare function isContainsChinese(value: string): boolean;
 declare const _default: {
     isNotEmpty: typeof isNotEmpty;
     isNotMobile: typeof isNotMobile;
-    isContainsChinese: typeof isContainsChinese;
 };
 export default _default;

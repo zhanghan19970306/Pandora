@@ -6,12 +6,15 @@ declare type timestamp = number[];
  */
 export declare function formatTime(value: number, format?: string): string;
 /**
+ * 下面的时间基本是应对 element-ui里面的时间段picker 但是有elment-ui有bug 会丢弃最后的毫秒999 这边做出的适配
+ */
+/**
  * 最近一周 (此刻 往前推前7天)
  * @returns { timestamp[] }
  */
 export declare function lastWeek(): timestamp;
 /**
- * 最近一月 (此刻 往前推前30天)
+ * 最近一月 (此刻 往前推前30/31天)
  * @returns { timestamp[] }
  */
 export declare function lastMonth(): timestamp;
