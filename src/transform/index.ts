@@ -29,3 +29,13 @@ export function bytesToSize(bytes: number): string {
     const i = Math.floor(Math.log(bytes) / Math.log(k))
     return parseFloat(String(bytes / Math.pow(k, i))).toFixed(2) + sizes[i]
 }
+
+/**
+ * 转化显示某个数组中 某个字段的拼接
+ * @example "[ { name: ‘XXX1’}, { name: 'XXX2' } ]" => "XXX1, XXX2"
+ * @param arr
+ * @param field
+ */
+export function arrayFieldToStr(arr: [], field: string): string {
+    return arr.map((item) => item[field] ?? "").toString()
+}
