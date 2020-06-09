@@ -52,4 +52,9 @@ export declare function nowYear(): timestamp;
  * 去年
  */
 export declare function prevYear(): timestamp;
+/**
+ * 星期格式化中文
+ * @param week { number }
+ */
+export declare function weekToText(week: number): string;
 export {};

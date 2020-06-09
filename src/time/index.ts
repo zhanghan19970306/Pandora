@@ -112,3 +112,11 @@ export function prevYear(): timestamp {
         dayjs().add(-1, "year").endOf("year").valueOf() - 999
     ]
 }
+
+/**
+ * 星期格式化中文
+ * @param week { number }
+ */
+export function weekToText(week: number): string {
+    return ["日", "一", "二", "三", "四", "五", "六"][week]
+}
